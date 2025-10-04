@@ -45,3 +45,7 @@ Helps detect tampering or unauthorized modifications to system/application logs.
 > Hash updated successfully.
 
 ```	
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/MGhaith/File-Integrity-Checker/blob/main/LICENSE) file for details.
