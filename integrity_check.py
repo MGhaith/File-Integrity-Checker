@@ -25,6 +25,18 @@ def save_hashes(hashes):
     with open(HASH_STORE, "w") as f:
         json.dump(hashes, f, indent=4)
 
+def init(path):
+    hashes = {}
+    if os.path.isdir(path):
+        for root, _, files in os.walk(path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                hashes[file_path] = compute_hash(file_path)
+    else:
+        hashes[path] = compute_hash(path)
+    save_hashes(hashes)
+    print("Hashes stored successfully.")
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
