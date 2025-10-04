@@ -14,3 +14,34 @@ Helps detect tampering or unauthorized modifications to system/application logs.
     ```bash
     pip install -r requirements.txt
     ```
+## Usage
+
+- Initialize the checker with a directory or file path to monitor.
+    ```bash
+    ./integrity_check.py init <file_or_dir>
+    ```
+- Run the checker periodically to verify log file integrity.
+    ```bash
+    ./integrity_check.py check <file_or_dir>
+    ```
+- Update the hashes for monitored files/directories.
+    ```bash
+    ./integrity_check.py update <file_or_dir>
+    ```
+- Check the output for any changes detected.
+
+### Example
+```bash
+> ./integrity-check init /var/log  # Initializes and stores hashes of all log files in the directory
+> Hashes stored successfully.
+
+> ./integrity-check check /var/log/syslog
+> Status: Modified (Hash mismatch)
+
+> ./integrity-check -check /var/log/auth.log
+> Status: Unmodified
+
+> ./integrity-check update /var/log/syslog
+> Hash updated successfully.
+
+```	
