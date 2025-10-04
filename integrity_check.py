@@ -60,6 +60,15 @@ def check(path):
         else:
             print(f"{file}: Unmodified")
 
+def update(path):
+    hashes = load_hashes()
+    if os.path.exists(path):
+        hashes[path] = compute_hash(path)
+        save_hashes(hashes)
+        print("Hash updated successfully.")
+    else:
+        print("File does not exist.")
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
