@@ -15,6 +15,12 @@ def compute_hash(file_path):
             sha256.update(chunk)
     return sha256.hexdigest()
 
+def load_hashes():
+    if HASH_STORE.exists():
+        with open(HASH_STORE, "r") as f:
+            return json.load(f)
+    return {}
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
