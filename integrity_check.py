@@ -37,6 +37,29 @@ def init(path):
     save_hashes(hashes)
     print("Hashes stored successfully.")
 
+def check(path):
+    hashes = load_hashes()
+    if not hashes:
+        print("No hashes stored. Run 'init' first.")
+        return
+    files_to_check = []
+    if os.path.isdir(path):
+        for root, _, files in os.walk(path):
+            for file in files:
+                files_to_check.append(os.path.join(root, file))
+    else:
+        files_to_check.append(path)
+
+    for file in files_to_check:
+        new_hash = compute_hash(file)
+        old_hash = hashes.get(file)
+        if not old_hash:
+            print(f"{file}: New file (not in baseline)")
+        elif new_hash != old_hash:
+            print(f"{file}: Modified (Hash mismatch)")
+        else:
+            print(f"{file}: Unmodified")
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
