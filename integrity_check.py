@@ -7,6 +7,14 @@ from pathlib import Path
 
 HASH_STORE = Path.home() / ".integrity_hashes.json"
 
+def compute_hash(file_path):
+    """Compute SHA-256 hash of a file."""
+    sha256 = hashlib.sha256()
+    with open(file_path, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            sha256.update(chunk)
+    return sha256.hexdigest()
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
