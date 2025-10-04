@@ -1,5 +1,11 @@
 import os
 import sys
+import hashlib
+import json
+from pathlib import Path
+
+HASH_STORE = Path.home() / ".integrity_hashes.json"
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
