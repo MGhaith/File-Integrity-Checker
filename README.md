@@ -46,6 +46,17 @@ Helps detect tampering or unauthorized modifications to system/application logs.
 
 ```	
 
+## Testing
+Unit tests are provided in `test_integrity.py` and cover the core functionalities:
+
+- `test_hash_computation`: Verifies that changing a file alters its SHA-256 hash.
+- `test_init_and_check`: Ensures that `init` stores hashes and `check` can later verify them.
+
+Run the full test suite from the repository root (`File-Integrity-Checker`):
+```bash
+pytest
+```
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/MGhaith/File-Integrity-Checker/blob/main/LICENSE) file for details.
