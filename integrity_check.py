@@ -21,6 +21,10 @@ def load_hashes():
             return json.load(f)
     return {}
 
+def save_hashes(hashes):
+    with open(HASH_STORE, "w") as f:
+        json.dump(hashes, f, indent=4)
+
 def usage(bool=True):
     if bool:
         print("Usage: ./integrity-check [init|check|update] <file_or_dir>")
